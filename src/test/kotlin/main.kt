@@ -1,3 +1,4 @@
 fun main(){
-    println("hello world")
+    val test = "$350K"
+    println(test.toLowerCase())
 }
