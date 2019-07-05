@@ -2,10 +2,13 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.ArrayList
 
 class Mapper() {
-    fun mapLines(lines: ArrayList<String>) {
+    fun mapLines(lines: ArrayList<String>): ArrayList<Footballer> {
         var footballerList = ArrayList<Footballer>()
+        lines.forEach { footballerList.add(lineSpliter(it)) }
+        return footballerList
     }
 
     fun lineSpliter(line: String): Footballer {
@@ -69,5 +72,4 @@ fun parseDate(date: String): Date? {
     if (date.isEmpty())
         return null
     return SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH).parse(date)
-}
 }
