@@ -4,14 +4,14 @@ import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
-class Mapper() {
-    fun mapLines(lines: ArrayList<String>): ArrayList<Footballer> {
-        var footballerList = ArrayList<Footballer>()
-        lines.forEach { footballerList.add(lineSpliter(it)) }
-        return footballerList
-    }
+class Mapper {
+//    fun mapLines(lines: ArrayList<String>): ArrayList<Footballer> {
+//        val footballerList = ArrayList<Footballer>()
+//        lines.forEach { footballerList.add(lineSpliter(it)) }
+//        return footballerList
+//    }
 
-    fun lineSpliter(line: String): Footballer {
+    fun map(line: String): Footballer {
         val splited = line.split(";")
         try {
             return (
@@ -56,16 +56,16 @@ fun moneyFormatter(value: String): Double {
     val moneyValueRegex = "(?<number>\\d+\\.\\d+|\\d+)(?<literal>\\w)"
     val pattern = Pattern.compile(moneyValueRegex)
     val matcher = pattern.matcher(value)
-    if (matcher.find()) {
+    return if (matcher.find()) {
         val number = matcher.group("number").toDouble()
         val literal = matcher.group("literal")
-        return when (literal) {
+        when (literal) {
             "M" -> number * 1000000.0
             "K" -> number * 1000.0
             else -> number
         }
     } else
-        return 0.0
+        0.0
 }
 
 fun parseDate(date: String): Date? {
