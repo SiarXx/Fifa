@@ -18,7 +18,7 @@ class Mapper {
                     Footballer(
                         splited[1].toInt(),
                         splited[2],
-                        splited[3].toInt(),
+                        splited[3].toIntOrNull(),
                         splited[4],
                         splited[5],
                         splited[6],
@@ -53,9 +53,10 @@ class Mapper {
 }
 
 fun moneyFormatter(value: String): Double {
+    val trimmedValue = value.trim()
     val moneyValueRegex = "(?<number>\\d+\\.\\d+|\\d+)(?<literal>\\w)"
     val pattern = Pattern.compile(moneyValueRegex)
-    val matcher = pattern.matcher(value)
+    val matcher = pattern.matcher(trimmedValue)
     return if (matcher.find()) {
         val number = matcher.group("number").toDouble()
         val literal = matcher.group("literal")
